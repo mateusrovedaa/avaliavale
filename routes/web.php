@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EvaluationController;
+use App\Models\Evaluation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('welcome', ['evaluations' => Evaluation::all()]);
+})->name('dashboard');
+
+Route::prefix('evaluations')->group(function () {
+    Route::get('/{company}', [EvaluationController::class, 'create'])->middleware('auth');
+    Route::post('', [EvaluationController::class, 'store']);
+});
 
 require __DIR__.'/auth.php';

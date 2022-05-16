@@ -53,7 +53,7 @@
                 <div class="flex flex-col" style="width: 75%; margin-left: 2%; margin-right: 2%;">
                     <div class="topic">
                         <div style="font-size: 18px; color: rgba(0, 0, 0, 0.5); margin-top: 27px; margin-left: 16px">Compartilhe sua avaliação com a gente...</div>
-                        <button style="border: 1px solid #4AABFB; background-color: #0D85E8; color: white; border-radius: 10px; width: 97px; margin-left: 85%; margin-top: 25px;">Publicar</button>
+                        <button style="border: 1px solid #4AABFB; background-color: #0D85E8; color: white; border-radius: 10px; width: 97px; margin-left: 85%; margin-top: 25px;" onclick="window.location.href='/evaluations/1'">Avaliar</button>
                     </div>
                     <div class="topic">
                         <div class="flex sm:justify-between" style="font-size: 18px; margin-top: 27px; margin-left: 16px">
