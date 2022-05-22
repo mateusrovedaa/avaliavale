@@ -14,7 +14,7 @@ class QuestionRequest extends BaseRequest
         return [
             'name' => 'required',
             'type' => 'required|in:text,number,list',
-            'valid_answers' => 'required_if:type,list|array',
+            'valid_answers' => 'required_if:type,list',
             'category_id' => 'required|exists:categories,id',
         ];
     }
