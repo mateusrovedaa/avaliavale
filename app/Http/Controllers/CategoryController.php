@@ -14,7 +14,14 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return CategoryResource::collection(Category::all());
+        $categories = Category::all();
+
+        return view('category.index', ['categories' => $categories]);
+    }
+
+    public function create()
+    {
+        return view('category.create');
     }
 
     public function store(CategoryRequest $request, CreateCategory $service)
@@ -22,7 +29,7 @@ class CategoryController extends Controller
         DB::beginTransaction();
         try
         {
-            $category = $service->handle($request->validated());
+            $service->handle($request->validated());
 
             DB::commit();
         }
@@ -37,12 +44,12 @@ class CategoryController extends Controller
             ], $exception->getCode());
         }
 
-        return new CategoryResource($category);
+        return redirect('/categories');
     }
 
-    public function show(Category $category): CategoryResource
+    public function edit(Category $category)
     {
-        return new CategoryResource($category);
+        return view('category.edit', ['category' => $category]);
     }
 
     public function update(Category $category, CategoryRequest $request, UpdateCategory $service)
@@ -50,7 +57,7 @@ class CategoryController extends Controller
         DB::beginTransaction();
         try
         {
-            $category = $service->handle($category, $request->validated());
+             $service->handle($category, $request->validated());
 
             DB::commit();
         }
@@ -65,7 +72,7 @@ class CategoryController extends Controller
             ], $exception->getCode());
         }
 
-        return new CategoryResource($category);
+        return redirect('/categories');
     }
 
     public function destroy(Category $category)
@@ -88,6 +95,6 @@ class CategoryController extends Controller
             ], $exception->getCode());
         }
 
-        return new CategoryResource($category);
+        return redirect('/categories');
     }
 }

@@ -21,6 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('api')->group(function () {
-    Route::apiResource('categories', CategoryController::class);
     Route::apiResource('questions', QuestionController::class);
 });
