@@ -26,7 +26,7 @@ Route::prefix('evaluations')->middleware('auth')->group(function () {
     Route::post('', [EvaluationController::class, 'store']);
 });
 
-Route::prefix('categories')->middleware('auth')->group(function () {
+Route::prefix('categories')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('', [CategoryController::class, 'index']);
     Route::get('create', [CategoryController::class, 'create']);
     Route::post('', [CategoryController::class, 'store']);
@@ -35,7 +35,7 @@ Route::prefix('categories')->middleware('auth')->group(function () {
     Route::delete('/{category}', [CategoryController::class, 'destroy']);
 });
 
-Route::prefix('/questions')->middleware('auth')->group(function () {
+Route::prefix('/questions')->middleware(['auth', 'is_admin'])->group(function () {
     Route::post('', [QuestionController::class, 'store']);
     Route::get('', [QuestionController::class, 'index']);
     Route::get('create', [QuestionController::class, 'create']);
