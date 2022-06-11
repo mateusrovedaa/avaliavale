@@ -37,6 +37,10 @@
         <form method="post" action="/evaluations">
             @csrf
             <input type="hidden" name="company_id" value="{{ $company->id }}">
+
+            <label>Comentário sobre a empresa/avaliação</label>
+            <textarea name="comment" required></textarea>
+
             @foreach($company->questions as $question)
                 <div class="w-full">
                     <label class="w-full">{{ $question->name }}</label>

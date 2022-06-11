@@ -6,7 +6,7 @@
     <input name="name" required value="{{ $question->name }}">
 
     <label>Categoria:</label>
-    <select name="category" required>
+    <select name="category_id" required>
         <option value="">Selecione...</option>
         @foreach($categories as $category)
             <option {{ $category->id === $question->category_id ? 'selected' : '' }} value="{{ $category->id }}">

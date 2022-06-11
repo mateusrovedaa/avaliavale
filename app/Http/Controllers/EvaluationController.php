@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EvaluationRequest;
 use App\Models\Company;
 use App\Models\Evaluation;
 use App\Models\EvaluationQuestion;
+use App\Services\Evaluation\CreateEvaluation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class EvaluationController extends Controller
 {
@@ -16,20 +20,24 @@ class EvaluationController extends Controller
         return view('evaluation.create', compact(['company']));
     }
 
-    public function store(Request $request) {
-        $evaluation = new Evaluation;
+    public function store(EvaluationRequest $request, CreateEvaluation $service) {
 
-        $evaluation->company_id = $request->input('company_id');
-        $evaluation->user_id = auth()->user()->id;
-        $evaluation->save();
-
-        foreach ($request->get('answer') as $key => $answer)
+        DB::beginTransaction();
+        try
         {
-            $evaluationQuestion = new EvaluationQuestion;
-            $evaluationQuestion->evaluation_id = $evaluation->id;
-            $evaluationQuestion->question_id = $key;
-            $evaluationQuestion->answer = $answer;
-            $evaluationQuestion->save();
+            $service->handle($request->validated(), $request->user());
+
+            DB::commit();
+        }
+        catch (Throwable $exception)
+        {
+            report($exception);
+
+            DB::rollBack();
+
+            return response()->json([
+                'error' => $exception->getMessage(),
+            ], 500);
         }
 
         return redirect('dashboard');
