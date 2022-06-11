@@ -15,7 +15,7 @@ class QuestionRequest extends BaseRequest
             'name' => 'required',
             'type' => 'required|in:text,number,list',
             'valid_answers' => 'required_if:type,list',
-            'category_id' => 'required|exists:categories,id',
+            'category' => 'required|exists:categories,id',
         ];
     }
 }

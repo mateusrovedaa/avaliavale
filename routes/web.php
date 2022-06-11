@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\QuestionController;
 use App\Models\Evaluation;
@@ -35,10 +36,17 @@ Route::prefix('categories')->middleware(['auth', 'is_admin'])->group(function ()
     Route::delete('/{category}', [CategoryController::class, 'destroy']);
 });
 
-Route::prefix('/questions')->middleware(['auth', 'is_admin'])->group(function () {
+Route::prefix('questions')->middleware(['auth', 'is_admin'])->group(function () {
     Route::post('', [QuestionController::class, 'store']);
     Route::get('', [QuestionController::class, 'index']);
     Route::get('create', [QuestionController::class, 'create']);
 });
 
+Route::prefix('companies')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('', [CompanyController::class, 'index']);
+    Route::get('create', [CompanyController::class, 'create']);
+    Route::post('', [CompanyController::class, 'store']);
+    Route::get('edit/{company}', [CompanyController::class, 'edit']);
+    Route::put('/{company}', [CompanyController::class, 'update']);
+});
 require __DIR__.'/auth.php';

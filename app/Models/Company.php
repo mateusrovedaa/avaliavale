@@ -12,4 +12,9 @@ class Company extends Model
     public function questions() {
         return $this->hasMany(Question::class, 'category_id', 'category_id');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
