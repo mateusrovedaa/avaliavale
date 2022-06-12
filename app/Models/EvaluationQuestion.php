@@ -14,4 +14,8 @@ class EvaluationQuestion extends Model
     public function category() {
         return $this->belongsTo(Category::class);
     }
+
+    public function question() {
+        return $this->belongsTo(Question::class);
+    }
 }

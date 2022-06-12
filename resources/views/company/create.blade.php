@@ -7,7 +7,7 @@
     <textarea name="description"></textarea>
 
     <label>Categoria:</label>
-    <select name="category" required>
+    <select name="category_id" required>
         <option value="">Selecione...</option>
         @foreach($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
