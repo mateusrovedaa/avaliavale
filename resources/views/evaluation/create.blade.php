@@ -26,5 +26,13 @@
         <br>
     @endforeach
 
+    <label>Nota</label>
+        <input required type="radio" name="grade" value="5"><label>5</label>
+        <input required type="radio" name="grade" value="4"><label>4</label>
+        <input required type="radio" name="grade" value="3"><label>3</label>
+        <input required type="radio" name="grade" value="2"><label>2</label>
+        <input required type="radio" name="grade" value="1"><label>1</label>
+    <br>
+
     <button>Enviar avaliação</button>
 </form>

@@ -15,6 +15,7 @@ class EvaluationRequest extends BaseRequest
             'comment' => 'required',
             'company_id' => 'required|exists:companies,id',
             'answer' => 'nullable|array',
+            'grade' => 'required|integer',
         ];
     }
 }

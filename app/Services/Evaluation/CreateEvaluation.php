@@ -26,6 +26,7 @@ class CreateEvaluation
         $evaluation->company_id = $data['company_id'];
         $evaluation->user_id = $loggedUser->id;
         $evaluation->comment_id = $this->createComment($data['comment'])->id;
+        $evaluation->grade = $data['grade'];
 
         $evaluation->save();
 

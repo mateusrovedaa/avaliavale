@@ -20,8 +20,8 @@ class EvaluationController extends Controller
         return view('evaluation.create', compact(['company']));
     }
 
-    public function store(EvaluationRequest $request, CreateEvaluation $service) {
-
+    public function store(EvaluationRequest $request, CreateEvaluation $service)
+    {
         DB::beginTransaction();
         try
         {

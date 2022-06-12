@@ -16,4 +16,8 @@ class Evaluation extends Model
     public function evaluationQuestions() {
         return $this->hasMany(EvaluationQuestion::class);
     }
+
+    public function comment() {
+        return $this->belongsTo(Comment::class);
+    }
 }

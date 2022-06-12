@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\QuestionController;
 use App\Models\Evaluation;
@@ -18,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('{url}', function () {
-    return view('welcome', ['evaluations' => Evaluation::all()]);
-})->where('url', 'dashboard|')->name('dashboard');
+Route::get('{url}', [DashboardController::class, 'index'])
+    ->where('url', 'dashboard|')
+    ->name('dashboard');
 
 Route::prefix('evaluations')->middleware('auth')->group(function () {
     Route::get('/{company}', [EvaluationController::class, 'create'])->middleware('auth');
@@ -49,4 +51,9 @@ Route::prefix('companies')->middleware(['auth', 'is_admin'])->group(function () 
     Route::get('edit/{company}', [CompanyController::class, 'edit']);
     Route::put('/{company}', [CompanyController::class, 'update']);
 });
+
+Route::prefix('comment')->middleware(['auth'])->group(function () {
+    Route::post('/{comment?}', [CommentController::class, 'create']);
+});
+
 require __DIR__.'/auth.php';

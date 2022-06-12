@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
-use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use App\Services\Category\CreateCompany;
+use App\Services\Category\CreateCategory;
 use App\Services\Category\UpdateCategory;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -24,7 +23,7 @@ class CategoryController extends Controller
         return view('category.create');
     }
 
-    public function store(CategoryRequest $request, CreateCompany $service)
+    public function store(CategoryRequest $request, CreateCategory $service)
     {
         DB::beginTransaction();
         try
