@@ -1,10 +1,32 @@
-<form method="post" action="/categories">
-    @csrf
-    <label>Nome:</label>
-    <input name="name" required>
+@extends('layouts.default')
 
-    <label>Descrição:</label>
-    <textarea name="description" required></textarea>
+@section('content')
 
-    <button>Salvar</button>
-</form>
+    <div id="main-content">
+        <h1><b>Cadastro de Categoria</b></h1>
+
+        <form method="post" action="/categories">
+            @csrf
+
+            <input
+                name="name"
+                class="w-full input-av"
+                placeholder="Nome"
+                required
+            >
+
+            <textarea
+                name="description"
+                class="w-full textarea-av"
+                placeholder="Descrição"
+                required
+            ></textarea>
+
+            <div class="form-buttons">
+                <button onclick="history.back()" type="button" class="form-button-av back-button">Voltar</button>
+                <button type="submit" class="form-button-av save-button">Salvar</button>
+            </div>
+        </form>
+    </div>
+
+@stop

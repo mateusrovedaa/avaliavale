@@ -1416,3 +1416,40 @@ select {
   }
 }
 
+#main-content {
+    width: 100%;
+    margin: 10px 40px;
+}
+
+.input-av, .textarea-av {
+    border: 1px solid #4AABFB;
+    background: #FEFFFF;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-button-av {
+    margin: 10px
+}
+
+.back-button, .save-button {
+    border-radius: 15px;
+    color: white;
+    width: 140px;
+}
+
+.back-button {
+    border: 1px solid #9FA69F;
+    background-color: #9FA69F !important;
+}
+
+.save-button {
+    border: 1px solid #75CC77;
+    background-color: #75CC77 !important;
+}
