@@ -9,7 +9,7 @@ if [[ "$1" == "production" ]]; then
 fi
 
 # Enter maintenance mode or return true if already is in maintenance mode
-#(php artisan down) || true
+(php artisan down) || true
 
 # Pull the latest version
 git pull origin
@@ -26,6 +26,9 @@ php artisan clear-compiled
 
 # Recreate cache
 php artisan optimize
+
+# Verify if node packages are installed
+[[ ! -d node_modules ]] && npm install
 
 # Compile npm assets
 if [[ "$STAGE" == "production" ]]; then
