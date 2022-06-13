@@ -1,0 +1,24 @@
+name: Deploy Production
+
+# Trigger the workflow on push and
+# pull request events on the main branch
+on:
+  workflow_dispatch:
+    branches:
+      - main
+
+# Authenticate to the the server via ssh
+# and run our deployment script
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SSHKEY }}
+          script: "cd /opt/avaliavale-production && ./.scripts/deploy.sh production"
