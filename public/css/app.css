@@ -1424,7 +1424,7 @@ select {
     margin: 10px 40px;
 }
 
-.input-av, .textarea-av {
+.input-av, .textarea-av, .select-av, .file-av {
     border: 1px solid #4AABFB;
     background: #FEFFFF;
     border-radius: 10px;
@@ -1517,4 +1517,11 @@ select {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+
+.company-category {
+    background-color: #D6BC61;
+    color: rgba(0, 0, 0, 0.47);
+    padding: 5px;
+    border-radius: 15px;
 }

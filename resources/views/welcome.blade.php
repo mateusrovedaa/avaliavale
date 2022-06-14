@@ -94,13 +94,6 @@
         border-radius: 50%;
     }
 
-    .company-category {
-        background-color: #D6BC61;
-        color: rgba(0, 0, 0, 0.47);
-        padding: 5px;
-        border-radius: 15px;
-    }
-
     .checked {
         color: orange;
     }

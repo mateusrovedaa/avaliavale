@@ -1,30 +1,37 @@
-<a href="/companies/create">Criar nova empresa</a>
+@extends('layouts.default')
 
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Categoria</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($companies as $company)
-        <tr>
-            <td>{{ $company->name }}</td>
-            <td>{{ $company->description }}</td>
-            <td>{{ $company->category->name }}</td>
-            <td>
-                <a href="/companies/edit/{{ $company->id }}">Editar</a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+@section('content')
+
+    <div id="main-content">
+        <div id="index-header" class="w-full">
+            <h1><b>Empresa</b></h1>
+            <a id="new-button" href="/companies/create">
+                Criar nova empresa
+            </a>
+        </div>
+
+        <div id="content" class="w-full">
+            @foreach($companies as $company)
+                <div class="item-line">
+                    <div class="item-content w-1/2">
+                        <h2><b>{{ $company->name }}</b></h2>
+                        {{ $company->description }}
+                        <span class="company-category">{{ $company->category->name }} <br></span>
+                    </div>
+                    <div class="item-actions w-1/2">
+                        <a class="edit-button" href="/companies/edit/{{ $company->id }}">Editar</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+@stop
 
 <style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
+
+    form, h2 {
+        margin: 0 !important;
     }
+
 </style>
