@@ -1,38 +1,61 @@
-<h1><b>Avaliando {{ $company->name }}</b></h1>
-<form method="post" action="/evaluations">
-    @csrf
-    <input type="hidden" name="company_id" value="{{ $company->id }}">
+@extends('layouts.default')
 
-    <label>Comentário sobre a empresa/avaliação</label>
-    <textarea name="comment" required></textarea>
-    <br>
+@section('content')
 
-    @foreach($company->questions as $question)
-        <label>{{ $question->name }}</label>
-        @if($question->type === 'text')
-            <textarea required name="answer[{{ $question->id }}]"></textarea>
-        @elseif($question->type === 'number')
-            @for($i = 1; $i <= 5; $i++)
-                <br>
-                <input required type="radio" name="answer[{{ $question->id }}]" value="{{ $i }}">
-                <label>{{ $i }}</label>
-            @endfor
-        @else
-            @foreach($question->valid_answers as $validAnwser)
-                <input required type="radio" name="answer[{{ $question->id }}]" value="{{ $validAnwser }}">
-                <label>{{ ucwords($validAnwser) }}</label>
+    <div id="main-content">
+        <h1><b>Avaliando {{ $company->name }}</b></h1>
+
+        <form method="post" action="/evaluations">
+            @csrf
+            <input type="hidden" name="company_id" value="{{ $company->id }}">
+
+            <input
+                name="comment"
+                class="w-full input-av"
+                placeholder="Comentário sobre a empresa/avaliação"
+                required
+            >
+
+            @foreach($company->questions as $question)
+                @if($question->type === 'text')
+                    <textarea
+                        name="answer[{{ $question->id }}]"
+                        class="w-full textarea-av"
+                        placeholder="Comentário sobre a empresa/avaliação"
+                        required
+                    ></textarea>
+                @elseif($question->type === 'number')
+                    <label>{{ $question->name }}</label>
+                    @for($i = 1; $i <= 5; $i++)
+                        <br>
+                        <input required type="radio" name="answer[{{ $question->id }}]" value="{{ $i }}">
+                        <label>{{ $i }}</label>
+                    @endfor
+                @else
+                    <label>{{ $question->name }}</label>
+                    @foreach($question->valid_answers as $validAnwser)
+                        <br>
+                        <input required type="radio" name="answer[{{ $question->id }}]" value="{{ $validAnwser }}">
+                        <label>{{ ucwords($validAnwser) }}</label>
+                    @endforeach
+                @endif
+                <br><br>
             @endforeach
-        @endif
-        <br>
-    @endforeach
 
-    <label>Nota</label>
-        <input required type="radio" name="grade" value="5"><label>5</label>
-        <input required type="radio" name="grade" value="4"><label>4</label>
-        <input required type="radio" name="grade" value="3"><label>3</label>
-        <input required type="radio" name="grade" value="2"><label>2</label>
-        <input required type="radio" name="grade" value="1"><label>1</label>
-    <br>
+            <label>Nota</label>
+            <br> <input required type="radio" name="grade" value="5"><label>5</label>
+            <br> <input required type="radio" name="grade" value="4"><label>4</label>
+            <br> <input required type="radio" name="grade" value="3"><label>3</label>
+            <br> <input required type="radio" name="grade" value="2"><label>2</label>
+            <br> <input required type="radio" name="grade" value="1"><label>1</label>
+            <br>
 
-    <button>Enviar avaliação</button>
-</form>
+            <div class="form-buttons">
+                <button onclick="history.back()" type="button" class="form-button-av back-button">Voltar</button>
+                <button type="submit" class="form-button-av save-button">Enviar avaliação</button>
+            </div>
+        </form>
+
+    </div>
+
+@stop
