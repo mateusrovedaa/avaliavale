@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Evaluation;
 use Illuminate\Support\Facades\DB;
 use stdClass;
@@ -31,7 +32,7 @@ class DashboardController extends Controller
             $formattedEvaluations[] = $formattedEvaluation;
         }
 
-        return view('welcome', ['evaluations' => $formattedEvaluations]);
+        return view('welcome', ['evaluations' => $formattedEvaluations, 'companies' => Company::all()]);
     }
 
     private function getEvaluationThread(Evaluation $evaluation) {
