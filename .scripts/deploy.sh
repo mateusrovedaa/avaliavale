@@ -23,6 +23,8 @@ fi
 
 # Clear the old cache
 php artisan clear-compiled
+php artisan view:clear
+php artisan view:cache
 
 # Recreate cache
 php artisan optimize
@@ -31,11 +33,11 @@ php artisan optimize
 [[ ! -d node_modules ]] && npm install
 
 # Compile npm assets
-if [[ "$STAGE" == "production" ]]; then
-    npm run prod
-else
-    npm run dev
-fi
+# if [[ "$STAGE" == "production" ]]; then
+#     npm run prod
+# else
+#     npm run dev
+# fi
 
 # Run database migrations
 php artisan migrate --force
