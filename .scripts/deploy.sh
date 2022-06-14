@@ -12,7 +12,7 @@ fi
 (php artisan down) || true
 
 # Reset code to the origin
-git fetch
+git fetch --all
 git reset --hard origin
 
 # Install composer dependencies
