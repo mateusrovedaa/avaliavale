@@ -11,8 +11,8 @@ fi
 # Enter maintenance mode or return true if already is in maintenance mode
 (php artisan down) || true
 
-# Pull the latest version
-git pull origin
+# Reset code to the origin
+git reset --hard origin
 
 # Install composer dependencies
 if [[ "$STAGE" == "production" ]]; then
