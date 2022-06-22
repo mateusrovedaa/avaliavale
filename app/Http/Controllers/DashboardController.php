@@ -9,11 +9,17 @@ use stdClass;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(?Company $company = null)
     {
-        $evaluations = Evaluation::with(['company', 'evaluationQuestions.question'])
-             ->latest()
-             ->get();
+        $evaluations = Evaluation::with(['company.category', 'evaluationQuestions.question'])
+             ->latest();
+
+        if ($company) {
+            $evaluations
+                ->where('company_id', $company->id);
+        }
+
+        $evaluations = $evaluations->get();
         $formattedEvaluations = [];
 
         foreach ($evaluations as $evaluation)
@@ -30,6 +36,10 @@ class DashboardController extends Controller
             $formattedEvaluation->grade = $evaluation->grade;
 
             $formattedEvaluations[] = $formattedEvaluation;
+        }
+
+        if ($company) {
+            return view('company.dashboard', ['evaluations' => $formattedEvaluations, 'companies' => Company::all()]);
         }
 
         return view('welcome', ['evaluations' => $formattedEvaluations, 'companies' => Company::all()]);

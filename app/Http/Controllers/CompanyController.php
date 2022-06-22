@@ -24,6 +24,11 @@ class CompanyController extends Controller
         return view('company.create', ['categories' => Category::all()]);
     }
 
+    public function dashboard(Company $company)
+    {
+        return view('company.dashboard', ['company' => $company]);
+    }
+
     public function store(CompanyRequest $request, CreateCompany $service)
     {
         DB::beginTransaction();
