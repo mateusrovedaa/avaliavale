@@ -8,9 +8,19 @@
     <li class="nav-item nav-item-user">
         @if(auth()->user())
             <a class="nav-link disabled">{{ auth()->user()->name }}</a>
-            @if(auth()->user()->admin)
-                <sub>Menu</sub>
-            @endif
+            <div class="dropdown show">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Perfil</a>
+                    @if(auth()->user()->admin)
+                        <a class="dropdown-item" href="/categories">Categorias</a>
+                        <a class="dropdown-item" href="/companies">Empresas</a>
+                        <a class="dropdown-item" href="/questions">Perguntas</a>
+                    @endif
+                </div>
+            </div>
         @else
             <a class="nav-link" href="/login">Login</a>
         @endif
@@ -33,13 +43,13 @@
     }
 
     .nav-item-home {
-        width: 90%;
+        width: 84%;
     }
 
     .nav-item-user {
-        width: 10%;
+        width: 16%;
         align-items: center;
-        justify-content: center;
+        justify-content: end;
         display: flex;
     }
 
