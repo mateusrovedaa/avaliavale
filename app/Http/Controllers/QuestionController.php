@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Services\Question\CreateQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use stdClass;
 use Throwable;
 
 class QuestionController extends Controller
@@ -16,8 +17,20 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::with(['category'])->get();
+        $formattedQuestions = [];
 
-        return view('question.index', ['questions' => $questions]);
+        foreach ($questions as $question)
+        {
+            $formattedQuestion = new stdClass;
+            $formattedQuestion->id = $question->id;
+            $formattedQuestion->name = $question->name;
+            $formattedQuestion->type = $this->formatType($question);
+            $formattedQuestion->category = $question->category->name;
+
+            $formattedQuestions[] = $formattedQuestion;
+        }
+
+        return view('question.index', ['questions' => $formattedQuestions]);
     }
 
     public function create()
@@ -48,5 +61,14 @@ class QuestionController extends Controller
     public function edit(Question $question)
     {
         return view('question.edit', ['question' => $question, 'categories' => Category::all()]);
+    }
+
+    private function formatType(Question $question) : string
+    {
+        return match ($question->type) {
+            'text' => 'Texto',
+            'number' => 'Número',
+            'list' => 'Lista',
+        };
     }
 }
