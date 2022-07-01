@@ -35,3 +35,6 @@ Como comando básico, para subir os containers, podemos utilizar
 ```
 ./vendor/bin/sail up
 ```
+
+# Changelog
+Changelog do projeto pode ser visualizado [aqui](https://github.com/mateusrovedaa/avaliavale/blob/dc231f07fe72c6955ffbf2b6c82b04f468393d7c/CHANGELOG.md).
