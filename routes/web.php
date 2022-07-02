@@ -47,7 +47,7 @@ Route::prefix('questions')->middleware(['auth', 'is_admin'])->group(function () 
 Route::prefix('companies')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('', [CompanyController::class, 'index']);
     Route::get('create', [CompanyController::class, 'create']);
-    Route::get('dash/{company}', [DashboardController::class, 'index']);
+    Route::get('dash/{company}', [DashboardController::class, 'index'])->withoutMiddleware(['auth', 'is_admin']);
     Route::post('', [CompanyController::class, 'store']);
     Route::get('edit/{company}', [CompanyController::class, 'edit']);
     Route::put('/{company}', [CompanyController::class, 'update']);

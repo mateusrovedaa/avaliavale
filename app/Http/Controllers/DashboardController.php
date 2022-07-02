@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index(?Company $company = null)
     {
-        $evaluations = Evaluation::with(['company.category', 'evaluationQuestions.question'])
+        $evaluations = Evaluation::with(['company.category', 'evaluationQuestions.question', 'user'])
              ->latest();
 
         if ($company) {
@@ -30,10 +30,12 @@ class DashboardController extends Controller
             $formattedEvaluation->comment = $evaluation->comment->comment;
             $formattedEvaluation->comment_id = $evaluation->comment->id;
             $formattedEvaluation->thread = $this->getEvaluationThread($evaluation);
+            $formattedEvaluation->companyId = $evaluation->company_id;
             $formattedEvaluation->companyLogo = $evaluation->company->logo;
             $formattedEvaluation->companyName = $evaluation->company->name;
             $formattedEvaluation->categoryName = $evaluation->company->category->name;
             $formattedEvaluation->grade = $evaluation->grade;
+            $formattedEvaluation->userName = $evaluation->user->name;
 
             $formattedEvaluations[] = $formattedEvaluation;
         }

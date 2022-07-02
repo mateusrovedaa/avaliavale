@@ -7,7 +7,7 @@
             <div class="w-3/4">
                 <div class="item-content">
                     <h3>
-                        <b>{{ $evaluation->comment }}</b>
+                        <b>{{ $evaluation->comment }}</b> <span class="user"><i>{{ $evaluation->userName }}</i></span>
                         <br>
                     </h3>
                     @for($grade = 0; $grade < $evaluation->grade; $grade++)
@@ -32,7 +32,7 @@
                             <div class="thread-comment">
                                 <div style="padding-left: {{ ($comment->depth - 1) * 2 }}em">
                                     <span class="comment">
-                                        <b>{{ $comment->comment }}</b>
+                                        <b>{{ $comment->comment }}</b> <span class="user"><i>{{ $evaluation->userName }}</i></span>
                                     </span>
                                 </div>
                                 <form style="padding-left: {{ ($comment->depth - 1) * 2 }}em"
@@ -131,6 +131,10 @@
         border: 1px solid #4AABFB;
         border-radius: 15px;
         padding: 5px;
+    }
+
+    .user {
+        font-size: 13px;
     }
 
 </style>

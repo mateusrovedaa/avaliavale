@@ -56,7 +56,9 @@
                 @endif
             </div>
             <div class="w-1/4 div-company-logo">
-                <img class="company-logo" src="data:image/png;base64, {{ $evaluation->companyLogo }}"> <br>
+                <a href="/companies/dash/{{ $evaluation->companyId }}">
+                    <img class="company-logo" src="data:image/png;base64, {{ $evaluation->companyLogo }}"> <br>
+                </a>
             </div>
         </div>
         <br>
@@ -138,6 +140,10 @@
         border: 1px solid #4AABFB;
         border-radius: 15px;
         padding: 5px;
+    }
+
+    .input-av {
+        height: 48px;
     }
 
 </style>
