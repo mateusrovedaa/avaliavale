@@ -8,7 +8,7 @@ A Avalia Vale é uma plataforma web segura que possibilita avaliar as empresas q
 - Vitória Luisa
 - Daniela da Silva
 - Felipe Augusto Dahmer
-- Celso Gasperini
+- Celso Júnior Degasperi
 
 # Requisitos
 ## Funcionais:
