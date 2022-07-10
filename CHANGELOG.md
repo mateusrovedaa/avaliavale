@@ -1,3 +1,15 @@
+### (2022-07-10)
+#### Correção de bugs
+- [FIX] Ajusta bug de rota de edição de categoria [5124c6d](https://github.com/mateusrovedaa/avaliavale/commit/5124c6dae849b53ed0711362656c576220fa832b)
+
+### (2022-07-09)
+#### Ajustes finos
+- Atualiza README [2252a20](https://github.com/mateusrovedaa/avaliavale/commit/2252a20a80efeb46f9d40f85632533fee6acb1ea)
+
+### (2022-07-02)
+#### Ajustes finos
+- Layout adjustments [bf26783](https://github.com/mateusrovedaa/avaliavale/commit/bf2678301ce059d652bd45b0d9cf636a45ba8632)
+
 ### (2022-07-01)
 #### Criação do changelog
 - Cria changelog - [66ee0ad](https://github.com/mateusrovedaa/avaliavale/commit/66ee0adcbf43322fde0a8f29eaa7e9fc25672a57)
